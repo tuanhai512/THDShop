@@ -7,20 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace User
+namespace Manager
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductOrder
+    public partial class ROLES
     {
-        public int ID { get; set; }
-        public Nullable<int> OrderId { get; set; }
-        public Nullable<int> ProductId { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<int> Price { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ROLES()
+        {
+            this.STAFF = new HashSet<STAFF>();
+        }
     
-        public virtual Orders Orders { get; set; }
-        public virtual Products Products { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STAFF> STAFF { get; set; }
     }
 }

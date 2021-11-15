@@ -15,10 +15,10 @@ namespace User
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class QLWBLTEntities : DbContext
+    public partial class QLLaptopShopEntities : DbContext
     {
-        public QLWBLTEntities()
-            : base("name=QLWBLTEntities")
+        public QLLaptopShopEntities()
+            : base("name=QLLaptopShopEntities")
         {
         }
     
@@ -27,16 +27,18 @@ namespace User
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Invoice> Invoice { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<ProductOrder> ProductOrder { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<BILL> BILL { get; set; }
+        public virtual DbSet<CATEGORIES> CATEGORIES { get; set; }
+        public virtual DbSet<CUSTOMER> CUSTOMER { get; set; }
+        public virtual DbSet<DE_BILL> DE_BILL { get; set; }
+        public virtual DbSet<DE_ORDER> DE_ORDER { get; set; }
+        public virtual DbSet<DELI_ADDRESS> DELI_ADDRESS { get; set; }
+        public virtual DbSet<ORDERS> ORDERS { get; set; }
+        public virtual DbSet<PRODUCTS> PRODUCTS { get; set; }
+        public virtual DbSet<ROLES> ROLES { get; set; }
+        public virtual DbSet<STAFF> STAFF { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<USERS> USERS { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -12,28 +12,26 @@ namespace User
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class USERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public USERS()
         {
-            this.Customer = new HashSet<Customer>();
-            this.Staff = new HashSet<Staff>();
+            this.CUSTOMER = new HashSet<CUSTOMER>();
+            this.STAFF = new HashSet<STAFF>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string Email { get; set; }
-        public string Avatar { get; set; }
-        public Nullable<int> Status { get; set; }
+        public string NAME { get; set; }
+        public string PASSWORD { get; set; }
+        public string ADDRESS { get; set; }
+        public string PHONE { get; set; }
+        public string EMAIL { get; set; }
+        public string AVATAR { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customer { get; set; }
+        public virtual ICollection<CUSTOMER> CUSTOMER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
+        public virtual ICollection<STAFF> STAFF { get; set; }
     }
 }

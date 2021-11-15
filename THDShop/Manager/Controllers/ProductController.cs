@@ -10,20 +10,20 @@ namespace Manager.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        QLWBLTEntities database = new QLWBLTEntities();
+        QLLaptopShopEntities database = new QLLaptopShopEntities();
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.Products.ToList());
+            return View(database.PRODUCTS.ToList());
         }
 
         // GET: QuanLy/KhachHang/Details/5
         public ActionResult Details(int id)
         {
-            return View(database.Products.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.PRODUCTS.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // GET: QuanLy/KhachHang/Create
@@ -51,14 +51,14 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.Products.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.PRODUCTS.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(User khachhang)
+        public ActionResult Edit(PRODUCTS product)
         {
-            var detail = database.Products.Where(s => s.ID == khachhang.ID);
+            var detail = database.PRODUCTS.Where(s => s.ID == product.ID);
 
             if (detail == null)
             {
@@ -66,7 +66,7 @@ namespace Manager.Controllers
             }
             if (ModelState.IsValid)
             {
-                database.Entry(khachhang).State = EntityState.Modified;
+                database.Entry(product).State = EntityState.Modified;
                 database.SaveChanges();
                 return RedirectToAction("Index");
             }

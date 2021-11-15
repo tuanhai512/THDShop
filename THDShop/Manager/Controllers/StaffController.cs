@@ -10,20 +10,20 @@ namespace Manager.Controllers
     public class StaffController : Controller
     {
         // GET: Staff
-        QLWBLTEntities database = new QLWBLTEntities();
+        QLLaptopShopEntities database = new QLLaptopShopEntities();
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.Staffs.ToList());
+            return View(database.STAFF.ToList());
         }
 
         // GET: QuanLy/KhachHang/Details/5
         public ActionResult Details(int id)
         {
-            return View(database.Staffs.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.STAFF.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // GET: QuanLy/KhachHang/Create
@@ -51,14 +51,14 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.Staffs.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.STAFF.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(Staff nhanvien)
+        public ActionResult Edit(STAFF nhanvien)
         {
-            var detail = database.Users.Where(s => s.ID == nhanvien.ID);
+            var detail = database.STAFF.Where(s => s.ID == nhanvien.ID);
 
             if (detail == null)
             {

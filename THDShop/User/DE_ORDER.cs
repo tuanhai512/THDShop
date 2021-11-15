@@ -7,23 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Manager
+namespace User
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class DE_ORDER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public DE_ORDER()
         {
-            this.Staffs = new HashSet<Staff>();
+            this.DE_BILL = new HashSet<DE_BILL>();
         }
     
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int IDORDER { get; set; }
+        public int IDPRODUCT { get; set; }
+        public Nullable<int> QUANTITY { get; set; }
+        public Nullable<int> PRICE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staffs { get; set; }
+        public virtual ICollection<DE_BILL> DE_BILL { get; set; }
+        public virtual ORDERS ORDERS { get; set; }
+        public virtual PRODUCTS PRODUCTS { get; set; }
     }
 }

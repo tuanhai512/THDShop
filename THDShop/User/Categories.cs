@@ -12,22 +12,22 @@ namespace User
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class CATEGORIES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categories()
+        public CATEGORIES()
         {
-            this.Products = new HashSet<Products>();
+            this.PRODUCTS = new HashSet<PRODUCTS>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> CreateBy { get; set; }
-        public Nullable<System.DateTime> CreateAt { get; set; }
-        public Nullable<int> UpdateBy { get; set; }
-        public Nullable<System.DateTime> UpdateAt { get; set; }
+        public string NAME { get; set; }
+        public Nullable<int> CREATEBY { get; set; }
+        public Nullable<System.DateTime> CREATEAT { get; set; }
+        public Nullable<int> UPDATEBY { get; set; }
+        public Nullable<System.DateTime> UPDATEAT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<PRODUCTS> PRODUCTS { get; set; }
     }
 }

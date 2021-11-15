@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Manager.ViewModel.Category;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,105 +11,80 @@ namespace Manager.Controllers
     public class CategoryController : Controller
     {
 
-        QLWBLTEntities _db = new QLWBLTEntities();
+        private QLLaptopShopEntities _context;
         // GET: NhanVien/LoaiMon
+        public CategoryController(QLLaptopShopEntities context)
+        {
+            this._context = context;
+          //  CategorySingleton.Instance.Init(context);
+
+        }
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
-            return View(_db.Categories.ToList());
-        }
 
-        // GET: NhanVien/LoaiMon/Details/5
-        public ActionResult Details(int id)
-        {
-            return View(_db.Categories.Where(s => s.ID == id).FirstOrDefault());
+            var query = CategorySingleton.Instance.listCategory;
+            return View(query.ToList());
         }
-
-        // GET: NhanVien/LoaiMon/Create
         public ActionResult Create()
         {
-            Category loai = new Category();
-            return View(loai);
+            return View();
         }
-
-        // POST: NhanVien/LoaiMon/Create
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Create(CreateCategoryInput model)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                // TODO: Add insert logic here
-                {
-                    _db.Categories.Add(category);
-                    _db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                return View(category);
-            }
-            catch
-            {
-                return View();
-            }
+            var entity = new CATEGORIES();
+            if (model == null)
+                entity = new CATEGORIES();
+            entity.NAME = model.Name;
+            _context.CATEGORIES.Add(entity);
+            _context.SaveChanges();
+            CategorySingleton.Instance.listCategory.Clear();
+            CategorySingleton.Instance.Init(_context);
+            // var category = CategorySingleton.Instance.listCategory;
+            return RedirectToAction("Index");
         }
 
-        // GET: NhanVien/LoaiMon/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_db.Categories.Where(s => s.ID == id).FirstOrDefault());
+            var entity = this._context.CATEGORIES.Find(id);
+            var model = new UpdateCategoryInput();
+            model.ID = entity.ID;
+            model.Name = entity.NAME;
+            return View(model);
         }
-
-        // POST: NhanVien/LoaiMon/Edit/5
-        [HttpPost]
-        public ActionResult Edit(Category loai, int id)
+        [HttpPut]
+        public ActionResult Edit(UpdateCategoryInput model)
         {
-            try
-            {
-                // TODO: Add update logic here
-                if (ModelState.IsValid)
-                {
-                    _db.Entry(loai).State = EntityState.Modified;
-                    _db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                return View(loai);
-            }
-            catch
-            {
-                return Content("Data đang được sử dụng bởi một bảng khác");
-            }
+            var entity = new CATEGORIES();
+            if (model == null)
+                return HttpNotFound();
+            entity.ID = model.ID;
+            entity.NAME = model.Name;
+            this._context.Entry(entity).State = EntityState.Modified;
+            this._context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            return View(_db.Categories.Where(s => s.ID == id).FirstOrDefault());
+            var entity = this._context.CATEGORIES.Find(id);
+            this._context.CATEGORIES.Remove(entity);
+            this._context.SaveChanges();
+            CategorySingleton.Instance.listCategory.Clear();
+            CategorySingleton.Instance.Init(_context);
+            return RedirectToAction("Index");
         }
-
-        // POST: NhanVien/DonViTinhMon/Delete/5
-        [HttpPost]
-        public ActionResult Delete(Category category, int id)
+        public ActionResult Detail(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-                category = _db.Categories.Where(s => s.ID == id).FirstOrDefault();
-                _db.Categories.Remove(category);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return Content("Dữ liệu này đang được sử dụng bởi một bảng khác");
-            }
-        }
+            var query = from c in _context.CATEGORIES
+                        where c.ID == id
+                        select new DetailCategoryDTO
+                        {
+                            ID = c.ID,
+                            NAME = c.NAME
+                        };
 
-        public PartialViewResult LoaiPartial()
-        {
-            var loaiList = _db.Categories.ToList();
-            return PartialView(loaiList);
+            return View(query.First());
         }
     }
 }

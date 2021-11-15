@@ -10,20 +10,20 @@ namespace Manager.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        QLWBLTEntities database = new QLWBLTEntities();
+        QLLaptopShopEntities database = new QLLaptopShopEntities();
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.Customers.ToList());
+            return View(database.CUSTOMER.ToList());
         }
 
         // GET: QuanLy/KhachHang/Details/5
         public ActionResult Details(int id)
         {
-            return View(database.Customers.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.CUSTOMER.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // GET: QuanLy/KhachHang/Create
@@ -51,14 +51,14 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.Customers.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.CUSTOMER.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(User khachhang)
+        public ActionResult Edit(CUSTOMER khachhang)
         {
-            var detail = database.Users.Where(s => s.ID == khachhang.ID);
+            var detail = database.CUSTOMER.Where(s => s.ID == khachhang.ID);
 
             if (detail == null)
             {

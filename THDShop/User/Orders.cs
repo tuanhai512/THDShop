@@ -12,22 +12,27 @@ namespace User
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class ORDERS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
+        public ORDERS()
         {
-            this.Invoice = new HashSet<Invoice>();
-            this.ProductOrder = new HashSet<ProductOrder>();
+            this.BILL = new HashSet<BILL>();
+            this.DE_ORDER = new HashSet<DE_ORDER>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> Total { get; set; }
-        public Nullable<int> Status { get; set; }
+        public System.DateTime DAY { get; set; }
+        public int IDDELIADDRESS { get; set; }
+        public Nullable<double> TOTALMONEY { get; set; }
+        public string NOTE { get; set; }
+        public int STATUS { get; set; }
+        public int METHODS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<BILL> BILL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
+        public virtual ICollection<DE_ORDER> DE_ORDER { get; set; }
+        public virtual DELI_ADDRESS DELI_ADDRESS { get; set; }
     }
 }

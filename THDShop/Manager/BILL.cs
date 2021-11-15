@@ -12,22 +12,25 @@ namespace Manager
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class BILL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
+        public BILL()
         {
-            this.Invoices = new HashSet<Invoice>();
-            this.ProductOrders = new HashSet<ProductOrder>();
+            this.DE_BILL = new HashSet<DE_BILL>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> Total { get; set; }
-        public Nullable<int> Status { get; set; }
+        public Nullable<int> IDSTAFF { get; set; }
+        public int IDORDER { get; set; }
+        public Nullable<double> TOTALMONEY { get; set; }
+        public Nullable<System.DateTime> DATETIME { get; set; }
+        public string NOTE { get; set; }
+        public int METHODS { get; set; }
     
+        public virtual ORDERS ORDERS { get; set; }
+        public virtual STAFF STAFF { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<DE_BILL> DE_BILL { get; set; }
     }
 }

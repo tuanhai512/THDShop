@@ -76,7 +76,6 @@ H:\năm 4\THDShop\THDShop\Manager\bin\System.Web.WebPages.Razor.xml
 H:\năm 4\THDShop\THDShop\Manager\bin\Newtonsoft.Json.xml
 H:\năm 4\THDShop\THDShop\Manager\bin\Antlr3.Runtime.pdb
 H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.CopyComplete
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.dll

@@ -12,19 +12,26 @@ namespace User
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class CUSTOMER
     {
-        public int ID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string Email { get; set; }
-        public string Avatar { get; set; }
-        public Nullable<int> Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CUSTOMER()
+        {
+            this.DELI_ADDRESS = new HashSet<DELI_ADDRESS>();
+        }
     
-        public virtual Users Users { get; set; }
+        public int ID { get; set; }
+        public int IDUSER { get; set; }
+        public string NAME { get; set; }
+        public Nullable<System.DateTime> BIRTHDAY { get; set; }
+        public string ADDRESS { get; set; }
+        public string PHONE { get; set; }
+        public string EMAIL { get; set; }
+        public string PASSWORD { get; set; }
+        public string AVATAR { get; set; }
+    
+        public virtual USERS USERS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DELI_ADDRESS> DELI_ADDRESS { get; set; }
     }
 }

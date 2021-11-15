@@ -7,33 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Manager
+namespace User
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class BILL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public BILL()
         {
-            this.Customers = new HashSet<Customer>();
-            this.Staffs = new HashSet<Staff>();
+            this.DE_BILL = new HashSet<DE_BILL>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public Nullable<System.DateTime> BirthDay { get; set; }
-        public string Email { get; set; }
-        public string Avatar { get; set; }
-        public Nullable<int> Status { get; set; }
+        public Nullable<int> IDSTAFF { get; set; }
+        public int IDORDER { get; set; }
+        public Nullable<double> TOTALMONEY { get; set; }
+        public Nullable<System.DateTime> DATETIME { get; set; }
+        public string NOTE { get; set; }
+        public int METHODS { get; set; }
     
+        public virtual ORDERS ORDERS { get; set; }
+        public virtual STAFF STAFF { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staffs { get; set; }
+        public virtual ICollection<DE_BILL> DE_BILL { get; set; }
     }
 }

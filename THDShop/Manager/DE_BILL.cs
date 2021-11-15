@@ -10,13 +10,17 @@
 namespace Manager
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class DE_BILL
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int IDBILL { get; set; }
+        public int IDORDER { get; set; }
+        public int IDPRODUCT { get; set; }
+        public Nullable<int> QUANTITY { get; set; }
+        public string NOTE { get; set; }
+    
+        public virtual BILL BILL { get; set; }
+        public virtual DE_ORDER DE_ORDER { get; set; }
     }
 }

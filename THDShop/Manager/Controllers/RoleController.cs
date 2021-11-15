@@ -10,20 +10,20 @@ namespace Manager.Controllers
     public class RoleController : Controller
     {
         // GET: Role
-        QLWBLTEntities database = new QLWBLTEntities();
+        QLLaptopShopEntities database = new QLLaptopShopEntities();
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.Roles.ToList());
+            return View(database.ROLES.ToList());
         }
 
         // GET: QuanLy/KhachHang/Details/5
         public ActionResult Details(int id)
         {
-            return View(database.Roles.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.ROLES.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // GET: QuanLy/KhachHang/Create
@@ -51,14 +51,14 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.Roles.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.ROLES.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(Role role)
+        public ActionResult Edit(ROLES role)
         {
-            var detail = database.Roles.Where(s => s.ID == role.ID);
+            var detail = database.ROLES.Where(s => s.ID == role.ID);
 
             if (detail == null)
             {
