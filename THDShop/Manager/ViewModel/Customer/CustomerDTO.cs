@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Manager.ViewModel
+namespace Manager.ViewModel.Customer
 {
-    public class Customer
+    public class CustomerDTO
     {
         public int ID { get; set; }
         public int IDUSER { get; set; }

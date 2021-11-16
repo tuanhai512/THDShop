@@ -4,95 +4,91 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Manager.ViewModel.Customer;
 
 namespace Manager.Controllers
 {
     public class CustomerController : Controller
     {
         // GET: Customer
-        QLLaptopShopEntities database = new QLLaptopShopEntities();
+        private QLLaptopShopEntities _context;
+        // GET: NhanVien/LoaiMon
+        public CustomerController(QLLaptopShopEntities context)
+        {
+            this._context = context;
+            CustomerSingleton.Instance.Init(context);
+
+        }
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.CUSTOMER.ToList());
+            var query = CustomerSingleton.Instance.listCustomer;
+            return View(query.ToList());
         }
-
-        // GET: QuanLy/KhachHang/Details/5
-        public ActionResult Details(int id)
-        {
-            return View(database.CUSTOMER.Where(s => s.ID == id).FirstOrDefault());
-        }
-
-        // GET: QuanLy/KhachHang/Create
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: QuanLy/KhachHang/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateCustomerInput model)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var entity = new CUSTOMER();
+            if (model == null)
+                entity = new CUSTOMER();
+            entity.ID = model.IDUSER;
+            entity.PASSWORD = model.PASSWORD;
+            _context.CUSTOMER.Add(entity);
+            _context.SaveChanges();
+            CustomerSingleton.Instance.listCustomer.Clear();
+            CustomerSingleton.Instance.Init(_context);
+            var customer = CustomerSingleton.Instance.listCustomer;
+            return RedirectToAction("Index");
         }
 
-        // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.CUSTOMER.Where(s => s.ID == id).FirstOrDefault());
+            var entity = this._context.CUSTOMER.Find(id);
+            var model = new UpdateCustomerInput();
+            model.IDUSER = entity.IDUSER;
+            model.PASSWORD = entity.PASSWORD;
+            return View(model);
         }
-
-        // POST: QuanLy/Account/Edit/5
-        [HttpPost]
-        public ActionResult Edit(CUSTOMER khachhang)
+        [HttpPut]
+        public ActionResult Edit(UpdateCustomerInput model)
         {
-            var detail = database.CUSTOMER.Where(s => s.ID == khachhang.ID);
-
-            if (detail == null)
-            {
+            var entity = new CUSTOMER();
+            if (model == null)
                 return HttpNotFound();
-            }
-            if (ModelState.IsValid)
-            {
-                database.Entry(khachhang).State = EntityState.Modified;
-                database.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View();
+            entity.ID = model.IDUSER;
+            entity.PASSWORD = model.PASSWORD;
+            this._context.Entry(entity).State = EntityState.Modified;
+            this._context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        // GET: QuanLy/KhachHang/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var entity = this._context.CUSTOMER.Find(id);
+            this._context.CUSTOMER.Remove(entity);
+            this._context.SaveChanges();
+            CustomerSingleton.Instance.listCustomer.Clear();
+            CustomerSingleton.Instance.Init(_context);
+            return RedirectToAction("Index");
         }
-
-        // POST: QuanLy/KhachHang/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Detail(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var query = from c in _context.CUSTOMER
+                        where c.IDUSER == id
+                        select new DetailCustomerDTO
+                        {
+                            IDUSER = c.IDUSER,
+                            NAME = c.NAME
+                        };
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(query.First());
         }
     }
 }

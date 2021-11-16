@@ -16,12 +16,15 @@ namespace Manager.Controllers
         public CategoryController(QLLaptopShopEntities context)
         {
             this._context = context;
-          //  CategorySingleton.Instance.Init(context);
+            CategorySingleton.Instance.Init(context);
 
         }
         public ActionResult Index()
         {
-
+            if (Session["IDQL"] == null)
+            {
+                return RedirectToAction("Index", "LoginQuanLy");
+            }
             var query = CategorySingleton.Instance.listCategory;
             return View(query.ToList());
         }
@@ -78,7 +81,7 @@ namespace Manager.Controllers
         {
             var query = from c in _context.CATEGORIES
                         where c.ID == id
-                        select new DetailCategoryDTO
+                        select new DetailCustomerDTO
                         {
                             ID = c.ID,
                             NAME = c.NAME

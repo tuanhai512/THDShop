@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Manager.ViewModel
+namespace Manager.ViewModel.Product
 {
-    public class Product
+    public class ProductDTO
     {
         public int ID { get; set; }
+        public int? CategoryId { get; set; }
         public string NAME { get; set; }
         public string AVATAR { get; set; }
         public int QUANTITY { get; set; }

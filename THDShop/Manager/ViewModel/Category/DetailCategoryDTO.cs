@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Manager.ViewModel.Category
 {
-    public class DetailCategoryDTO:CategoryDTO
+    public class DetailCustomerDTO:CategoryDTO
     {
     }
 }
