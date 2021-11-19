@@ -11,20 +11,28 @@ namespace Manager.Controllers
     public class CategoryController : Controller
     {
 
-        private QLLaptopShopEntities _context;
+        private QLLaptopShopEntities _context = new QLLaptopShopEntities();     
         // GET: NhanVien/LoaiMon
-        public CategoryController(QLLaptopShopEntities context)
-        {
-            this._context = context;
-            CategorySingleton.Instance.Init(context);
+                                                                                  
+        //public CategoryController(QLLaptopShopEntities context)
+                                                                                  
+        //{
+                                                                                 
+        //    this._context = context;
+                                                                                  
+        //    CategorySingleton.Instance.Init(context);
 
+        //}
+        public CategoryController()
+        {
+            CategorySingleton.Instance.Init(_context);
         }
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
+            //if (Session["IDQL"] == null)
+            //{
+            //    return RedirectToAction("Index", "LoginQuanLy");
+            //}
             var query = CategorySingleton.Instance.listCategory;
             return View(query.ToList());
         }
@@ -38,7 +46,7 @@ namespace Manager.Controllers
             var entity = new CATEGORIES();
             if (model == null)
                 entity = new CATEGORIES();
-            entity.NAME = model.Name;
+                entity.NAME = model.Name;
             _context.CATEGORIES.Add(entity);
             _context.SaveChanges();
             CategorySingleton.Instance.listCategory.Clear();
@@ -88,6 +96,11 @@ namespace Manager.Controllers
                         };
 
             return View(query.First());
+        }
+        public PartialViewResult LoaiPartial()
+        {
+            var loaiList = _context.CATEGORIES.ToList();
+            return PartialView(loaiList);
         }
     }
 }
