@@ -8,7 +8,7 @@ namespace Manager.ViewModel.Product
     public class ProductDTO
     {
         public int ID { get; set; }
-        public int? CategoryId { get; set; }
+        public int? IDCATEGORY { get; set; }
         public string NAME { get; set; }
         public string AVATAR { get; set; }
         public int QUANTITY { get; set; }

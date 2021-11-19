@@ -17,7 +17,7 @@ namespace Manager.Controllers
         {
             if (Session["IDQL"] == null)
             {
-                return RedirectToAction("Index", "LoginQuanLy");
+                return RedirectToAction("Index", "Login");
             }
             return View(_db.USERS.ToList());
         }
@@ -31,13 +31,13 @@ namespace Manager.Controllers
         
         public ActionResult Create()
         {
-            USERS user = new USERS();
+            USER user = new USER();
             return View(user);
         }
 
         
         [HttpPost]
-        public ActionResult Create(USERS user)
+        public ActionResult Create(USER user)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(USERS user, int id)
+        public ActionResult Edit(USER user, int id)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace Manager.Controllers
 
         // POST: NhanVien/DonViTinhMon/Delete/5
         [HttpPost]
-        public ActionResult Delete(USERS user, int id)
+        public ActionResult Delete(USER user, int id)
         {
             try
             {

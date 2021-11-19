@@ -22,8 +22,8 @@ namespace Manager.ViewModel.Product
                                 NAME = c.NAME,
                                 PRICE = c.PRICE,
                                 DESCRIPTION = c.DESCRIPTION,
-                                CATEGORYNAME = c.CATEGORIES.NAME,
-                                CategoryId = c.IDCATEGORY,
+                                CATEGORYNAME = c.CATEGORy.NAME,
+                                IDCATEGORY = c.IDCATEGORY,
                                 QUANTITY = c.QUANTITY,
                                 IMAGE = c.IMAGE
                             };
@@ -33,5 +33,6 @@ namespace Manager.ViewModel.Product
                 }
             }
         }
+
     }
 }
