@@ -16,36 +16,40 @@ namespace Manager.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult LoginAccount(USERS _user)
+         public ActionResult LoginAccount()
         {
-            STAFF sTAFF = database.STAFF.Where(m => m.ID == _user.ID).FirstOrDefault();
-            CUSTOMER cUSTOMER = database.CUSTOMER.Where(m => m.ID == _user.ID).FirstOrDefault();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult LoginAccount(USER _user)
+        {
+            
+            CUSTOMER cUSTOMER = database.CUSTOMERs.Where(m => m.ID == _user.ID).FirstOrDefault();
             
             if (!CheckExistAccount(_user))
             {
                 ViewBag.ErrorInfo = "Sai info";
-                return View("Index");
+                return RedirectToAction("Index","Home");
             }
             else
             {
                 database.Configuration.ValidateOnSaveEnabled = false;
                 Session["EMAIL"] = _user.EMAIL;
                 Session["PASSWORD"] = _user.PASSWORD;
-                if(_user.ID == sTAFF.IDUSER || sTAFF.ROLES.NAME == "Manager" )
+                STAFF sTAFF = database.STAFFs.Where(m => m.ID == _user.ID).FirstOrDefault();
+                if (_user.PASSWORD == sTAFF.PASSWORD && _user.EMAIL == sTAFF.EMAIL && sTAFF.ROLE.NAME == "Manager")
                 {
-                    Session["TENNV"] = sTAFF.NAME;
+                    Session["TENQLY"] = sTAFF.NAME;
                     Session["ID"] = sTAFF.ID;
 
                 }
-                else if (_user.ID == sTAFF.IDUSER || sTAFF.ROLES.NAME == "Staff")
+                else if (_user.ID == sTAFF.IDUSER || sTAFF.ROLE.NAME == "Staff")
                 {
-                    Session["TENKH"] = cUSTOMER.NAME;
-                    Session["ID"] = cUSTOMER.ID;
+                    Session["TENNV"] = sTAFF.NAME;
+                    Session["ID"] = sTAFF.ID;
                 }    
                
-                return RedirectToAction("Index", "MonAn");
+                return RedirectToAction("Index", "Product");
             }
 
         }
@@ -56,7 +60,7 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditAccount(USERS user)
+        public ActionResult EditAccount(USER user)
         {
             var detail = database.USERS.Where(m => m.ID == user.ID);
 
@@ -74,7 +78,7 @@ namespace Manager.Controllers
             return RedirectToAction("Index");
         }
 
-        public bool CheckExistAccount(USERS _user)
+        public bool CheckExistAccount(USER _user)
         {
 
             var check = database.USERS.Where(s => s.EMAIL == _user.EMAIL && s.PASSWORD == _user.PASSWORD).FirstOrDefault();

@@ -6,29 +6,42 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Manager.ViewModel.Product;
+using Manager.ViewModel.Category;
+
 
 namespace Manager.Controllers
 {
     public class ProductController : Controller
     {
         // GET: Product
-        private QLLaptopShopEntities _context = new QLLaptopShopEntities();
-       
+        private QLLaptopShopEntities _context=new QLLaptopShopEntities();
+        public ProductController()
+        {
+            ProductSingleton.Instance.Init(_context);
+        } 
 
-       
+
+        //public ProductController(QLLaptopShopEntities context)
+        //{
+        //    this._context = context;
+        //    //  this._webHostEnvironment = webHostEnvironment;
+        //    ProductSingleton.Instance.Init(context);
+
+        //}
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
+            //if (Session["IDQUANLY"] == null)
+            //{
+            //    return RedirectToAction("LoginAccount","Login");
+            //}
+
             var query = ProductSingleton.Instance.listProduct;
             return View(query.ToList());          
         }
 
         public ActionResult Create()
         {
-            var categorylist = _context.PRODUCTS.ToList().Select(
+            var categorylist = _context.CATEGORIES.ToList().Select(
             x => new SelectListItem
             {
                 Text = x.NAME,
@@ -42,10 +55,10 @@ namespace Manager.Controllers
         [HttpPost]
         public ActionResult Create(CreateProductInput model)
         {
-            var entity = new PRODUCTS();
+            var entity = new PRODUCT();
             if (model != null)
             {
-                entity = new PRODUCTS();
+                entity = new PRODUCT();
                 var categorylist = _context.CATEGORIES.ToList().Select(
                 x => new SelectListItem
                 {
@@ -59,19 +72,19 @@ namespace Manager.Controllers
                     string filename = Path.GetFileNameWithoutExtension(model.UploadImage.FileName);
                     string extent = Path.GetExtension(model.UploadImage.FileName);
                     filename = filename + extent;
-                    model.Image = "/Images/" + filename;
+                    model.IMAGE = "/IMAGEs/" + filename;
                     model.UploadImage.SaveAs(Path.Combine("../Manager/Assets/img/" + filename));
                     model.UploadImage.SaveAs(Path.Combine("../User/Assets/img/" + filename));
                 }
-                entity.IMAGE = model.Image;
+                entity.IMAGE = model.IMAGE;
                 if (ModelState.IsValid)
                 {
-                    entity.ID = model.Id;
-                    entity.NAME = model.Name;
-                    entity.PRICE = model.Price.HasValue ? model.Price.Value : 0;
-                    entity.QUANTITY = model.Quantity.HasValue ? model.Quantity.Value : 0;
-                    entity.DESCRIPTION = model.Description;
-                    entity.IDCATEGORY = model.CategoryId;
+                    entity.ID = model.ID;
+                    entity.NAME = model.NAME;
+                    entity.PRICE = model.PRICE.HasValue ? model.PRICE.Value : 0;
+                    entity.QUANTITY = model.QUANTITY.HasValue ? model.QUANTITY.Value : 0;
+                    entity.DESCRIPTION = model.DESCRIPTION;
+                    entity.IDCATEGORY = model.IDCATEGORY;
                     _context.PRODUCTS.Add(entity);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
@@ -87,82 +100,83 @@ namespace Manager.Controllers
                 return View();
             }
         }
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int ID)
         {
 
-            var entity = _context.PRODUCTS.Find(id);
+            var entity = _context.PRODUCTS.Find(ID);
             var model = new UpdateProductInput();
             var categorylist = _context.CATEGORIES.ToList();
-            ViewBag.Categories = new SelectList(categorylist, "Name", "Name");
+            ViewBag.Categories = new SelectList(categorylist, "NAME", "NAME");
 
-            model.Id = entity.ID;
-            model.Name = entity.NAME;
-            model.Price = entity.PRICE;
-            model.Quantity = entity.QUANTITY;
-            model.Description = entity.DESCRIPTION;
+            model.ID = entity.ID;
+            model.NAME = entity.NAME;
+            model.PRICE = entity.PRICE;
+            model.QUANTITY = entity.QUANTITY;
+            model.DESCRIPTION = entity.DESCRIPTION;
 
-            model.CategoryId = entity.IDCATEGORY;
-            model.Image = entity.IMAGE;
+            model.IDCATEGORY = entity.IDCATEGORY;
+            model.IMAGE = entity.IMAGE;
             return View(model);
         }
-        [HttpPut]
+        [HttpPost]
         public ActionResult Edit(UpdateProductInput model)
         {
-            var entity = new PRODUCTS();
+            var entity = new PRODUCT();
             if (model == null)
                 return HttpNotFound();
 
             var categorylist = _context.CATEGORIES.ToList();
-            ViewBag.Categories = new SelectList(categorylist, "Name", "Name");
+            ViewBag.Categories = new SelectList(categorylist, "NAME", "NAME");
 
             if (model.UploadImage != null)
             {
                 string filename = Path.GetFileNameWithoutExtension(model.UploadImage.FileName);
                 string extent = Path.GetExtension(model.UploadImage.FileName);
                 filename = filename + extent;
-                model.Image = "/Images/" + filename;
+                model.IMAGE = "/IMAGEs/" + filename;
 
                 model.UploadImage.SaveAs(Path.Combine("../Manager/Assets/img/" + filename));
                 model.UploadImage.SaveAs(Path.Combine("../User/Assets/img/" + filename));
             }
-            entity.ID = model.Id;
-            entity.NAME = model.Name;
-            entity.PRICE = model.Price.HasValue ? model.Price.Value : 0;
-            entity.QUANTITY = model.Quantity.HasValue ? model.Quantity.Value : 0;
-            entity.DESCRIPTION = model.Description;
-            entity.IDCATEGORY = model.CategoryId;
-            entity.IMAGE = model.Image;
+            entity.ID = model.ID;
+            entity.NAME = model.NAME;
+            entity.PRICE = model.PRICE.HasValue ? model.PRICE.Value : 0;
+            entity.QUANTITY = model.QUANTITY.HasValue ? model.QUANTITY.Value : 0;
+            entity.DESCRIPTION = model.DESCRIPTION;
+            entity.IDCATEGORY = model.IDCATEGORY;
+            entity.IMAGE = model.IMAGE;
 
             this._context.Entry(entity).State = EntityState.Modified;
             this._context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        [HttpDelete]
-        public ActionResult Delete(int id)
+       
+        public ActionResult Delete(int ID)
         {
-            var entity = this._context.PRODUCTS.Find(id);
+            var entity = this._context.PRODUCTS.Find(ID);
+            ProductSingleton.Instance.listProduct.Clear();
+            ProductSingleton.Instance.Init(_context);
             this._context.PRODUCTS.Remove(entity);
             this._context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detail(DetailProductDTO model, int id)
-        {
-            var query = from c in _context.PRODUCTS
-                        where c.ID == id
-                        select new DetailProductDTO
-                        {
-                            ID = c.ID,
-                            NAME = c.NAME,
-                            PRICE = c.PRICE,
-                            QUANTITY = c.QUANTITY,
-                            DESCRIPTION = c.DESCRIPTION,
-                            IMAGE = c.IMAGE,
-                            CATEGORYNAME = c.CATEGORIES.NAME
-                        };
+        //public ActionResult Detail(DetailProductDTO model, int ID)
+        //{
+        //    var query = from c in _context.PRODUCTS
+        //                where c.ID == ID
+        //                select new DetailProductDTO
+        //                {
+        //                    ID = c.ID,
+        //                    NAME = c.NAME,
+        //                    PRICE = c.PRICE,
+        //                    QUANTITY = c.QUANTITY,
+        //                    DESCRIPTION = c.DESCRIPTION,
+        //                    IMAGE = c.IMAGE,
+        //                    CATEGORYNAME = c.CATEGORy.NAME
+        //                };
 
-            return View(query.First());
-        }
+        //    return View(query.First());
+        //}
     }
 }
