@@ -12,16 +12,10 @@ namespace Manager.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        private QLLaptopShopEntities _context;
+        private QLLaptopShopEntities _context = new QLLaptopShopEntities();
        
 
-        public ProductController(QLLaptopShopEntities context)
-        {
-            this._context = context;
-            //  this._webHostEnvironment = webHostEnvironment;
-            ProductSingleton.Instance.Init(context);
-
-        }
+       
         public ActionResult Index()
         {
             if (Session["IDQL"] == null)
