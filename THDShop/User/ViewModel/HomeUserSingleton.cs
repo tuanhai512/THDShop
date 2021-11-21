@@ -23,7 +23,7 @@ namespace User.ViewModel
                                 NAME = c.NAME,
                                 PRICE = c.PRICE,
                                 DESCRIPTION = c.DESCRIPTION,
-                                CATEGORYNAME = c.CATEGORy.NAME,
+                                CATEGORYNAME = c.CATEGORY.NAME,
                                 IDCATEGORY = c.IDCATEGORY,
                                 QUANTITY = c.QUANTITY,
                                 IMAGE = c.IMAGE

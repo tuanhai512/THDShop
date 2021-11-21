@@ -14,7 +14,7 @@ namespace User.Controllers
 
         public ActionResult Index()
         {
-            PRODUCTS product = new PRODUCTS();
+            PRODUCT product = new PRODUCT();
             var query = from c in _db.PRODUCTS
                         select new ProductDTO
                         {
