@@ -41,6 +41,8 @@
           <Property Name="EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="PASSWORD" Type="varchar" MaxLength="30" />
           <Property Name="AVATAR" Type="nvarchar(max)" />
+          <Property Name="POINT_MY" Type="int" Nullable="false" />
+          <Property Name="IDMYGIFT" Type="int" />
         </EntityType>
         <EntityType Name="DE_BILL">
           <Key>
@@ -76,6 +78,26 @@
           <Property Name="WARD" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="DISTRICT" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="NOTE" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="G_POINT" Type="int" Nullable="false" />
+          <Property Name="G_VALUE" Type="float" Nullable="false" />
+          <Property Name="G_START" Type="datetime" />
+          <Property Name="G_END" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MYGIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGIFT" Type="varchar" MaxLength="1" />
+          <Property Name="G_VALUE" Type="float" Nullable="false" />
+          <Property Name="G_START" Type="datetime" />
+          <Property Name="G_END" Type="datetime" />
         </EntityType>
         <EntityType Name="ORDERS">
           <Key>
@@ -177,6 +199,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CUSTOMER_MYGIFT">
+          <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="0..1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MYGIFT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="IDMYGIFT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CUSTOMER_USER">
           <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
@@ -251,6 +285,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GIFT_MYGIFT">
+          <End Role="GIFT" Type="Self.GIFT" Multiplicity="0..1" />
+          <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIFT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MYGIFT">
+              <PropertyRef Name="IDGIFT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ORDER_DEADDRESS">
           <End Role="DELI_ADDRESS" Type="Self.DELI_ADDRESS" Multiplicity="1" />
           <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
@@ -294,6 +340,8 @@
           <EntitySet Name="DE_BILL" EntityType="Self.DE_BILL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DE_ORDER" EntityType="Self.DE_ORDER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELI_ADDRESS" EntityType="Self.DELI_ADDRESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIFT" EntityType="Self.GIFT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MYGIFT" EntityType="Self.MYGIFT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
@@ -310,6 +358,10 @@
           <AssociationSet Name="FK_CATE_PRODUCTS" Association="Self.FK_CATE_PRODUCTS">
             <End Role="CATEGORIES" EntitySet="CATEGORIES" />
             <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUSTOMER_MYGIFT" Association="Self.FK_CUSTOMER_MYGIFT">
+            <End Role="MYGIFT" EntitySet="MYGIFT" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
           </AssociationSet>
           <AssociationSet Name="FK_CUSTOMER_USER" Association="Self.FK_CUSTOMER_USER">
             <End Role="USERS" EntitySet="USERS" />
@@ -334,6 +386,10 @@
           <AssociationSet Name="FK_DEORDER_PRODUCTS" Association="Self.FK_DEORDER_PRODUCTS">
             <End Role="PRODUCTS" EntitySet="PRODUCTS" />
             <End Role="DE_ORDER" EntitySet="DE_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIFT_MYGIFT" Association="Self.FK_GIFT_MYGIFT">
+            <End Role="GIFT" EntitySet="GIFT" />
+            <End Role="MYGIFT" EntitySet="MYGIFT" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDER_DEADDRESS" Association="Self.FK_ORDER_DEADDRESS">
             <End Role="DELI_ADDRESS" EntitySet="DELI_ADDRESS" />
@@ -368,7 +424,7 @@
           <NavigationProperty Name="STAFF" Relationship="Self.FK_BILL_STAFF" FromRole="BILL" ToRole="STAFF" />
           <NavigationProperty Name="DE_BILL" Relationship="Self.FK_DEBILL_BILL" FromRole="BILL" ToRole="DE_BILL" />
         </EntityType>
-        <EntityType Name="CATEGORIES">
+        <EntityType Name="CATEGORy">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -393,6 +449,9 @@
           <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="POINT_MY" Type="Int32" Nullable="false" />
+          <Property Name="IDMYGIFT" Type="Int32" />
+          <NavigationProperty Name="MYGIFT" Relationship="Self.FK_CUSTOMER_MYGIFT" FromRole="CUSTOMER" ToRole="MYGIFT" />
           <NavigationProperty Name="USER" Relationship="Self.FK_CUSTOMER_USER" FromRole="CUSTOMER" ToRole="USERS" />
           <NavigationProperty Name="DELI_ADDRESS" Relationship="Self.FK_DEADDRESS_CUSTOMER" FromRole="CUSTOMER" ToRole="DELI_ADDRESS" />
         </EntityType>
@@ -437,6 +496,29 @@
           <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_DEADDRESS_CUSTOMER" FromRole="DELI_ADDRESS" ToRole="CUSTOMER" />
           <NavigationProperty Name="ORDERS" Relationship="Self.FK_ORDER_DEADDRESS" FromRole="DELI_ADDRESS" ToRole="ORDERS" />
+        </EntityType>
+        <EntityType Name="GIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="G_POINT" Type="Int32" Nullable="false" />
+          <Property Name="G_VALUE" Type="Double" Nullable="false" />
+          <Property Name="G_START" Type="DateTime" Precision="3" />
+          <Property Name="G_END" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MYGIFTs" Relationship="Self.FK_GIFT_MYGIFT" FromRole="GIFT" ToRole="MYGIFT" />
+        </EntityType>
+        <EntityType Name="MYGIFT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGIFT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="G_VALUE" Type="Double" Nullable="false" />
+          <Property Name="G_START" Type="DateTime" Precision="3" />
+          <Property Name="G_END" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CUSTOMERs" Relationship="Self.FK_CUSTOMER_MYGIFT" FromRole="MYGIFT" ToRole="CUSTOMER" />
+          <NavigationProperty Name="GIFT" Relationship="Self.FK_GIFT_MYGIFT" FromRole="MYGIFT" ToRole="GIFT" />
         </EntityType>
         <EntityType Name="ORDER">
           <Key>
@@ -550,7 +632,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CATE_PRODUCTS">
-          <End Role="CATEGORIES" Type="QLLaptopShopModel.CATEGORIES" Multiplicity="0..1" />
+          <End Role="CATEGORIES" Type="Self.CATEGORy" Multiplicity="0..1" />
           <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATEGORIES">
@@ -558,6 +640,18 @@
             </Principal>
             <Dependent Role="PRODUCTS">
               <PropertyRef Name="IDCATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUSTOMER_MYGIFT">
+          <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="0..1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MYGIFT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="IDMYGIFT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -635,6 +729,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GIFT_MYGIFT">
+          <End Role="GIFT" Type="Self.GIFT" Multiplicity="0..1" />
+          <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIFT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MYGIFT">
+              <PropertyRef Name="IDGIFT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STAFF_ROLES">
           <End Role="ROLES" Type="Self.ROLE" Multiplicity="0..1" />
           <End Role="STAFF" Type="Self.STAFF" Multiplicity="*" />
@@ -661,11 +767,13 @@
         </Association>
         <EntityContainer Name="QLLaptopShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BILLs" EntityType="Self.BILL" />
-          <EntitySet Name="CATEGORIES" EntityType="QLLaptopShopModel.CATEGORIES" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORy" />
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="DE_BILL" EntityType="Self.DE_BILL" />
           <EntitySet Name="DE_ORDER" EntityType="Self.DE_ORDER" />
           <EntitySet Name="DELI_ADDRESS" EntityType="Self.DELI_ADDRESS" />
+          <EntitySet Name="GIFTs" EntityType="Self.GIFT" />
+          <EntitySet Name="MYGIFTs" EntityType="Self.MYGIFT" />
           <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
           <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
           <EntitySet Name="ROLES" EntityType="Self.ROLE" />
@@ -686,6 +794,10 @@
           <AssociationSet Name="FK_CATE_PRODUCTS" Association="Self.FK_CATE_PRODUCTS">
             <End Role="CATEGORIES" EntitySet="CATEGORIES" />
             <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUSTOMER_MYGIFT" Association="Self.FK_CUSTOMER_MYGIFT">
+            <End Role="MYGIFT" EntitySet="MYGIFTs" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
           </AssociationSet>
           <AssociationSet Name="FK_CUSTOMER_USER" Association="Self.FK_CUSTOMER_USER">
             <End Role="USERS" EntitySet="USERS" />
@@ -710,6 +822,10 @@
           <AssociationSet Name="FK_ORDER_DEADDRESS" Association="Self.FK_ORDER_DEADDRESS">
             <End Role="DELI_ADDRESS" EntitySet="DELI_ADDRESS" />
             <End Role="ORDERS" EntitySet="ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIFT_MYGIFT" Association="Self.FK_GIFT_MYGIFT">
+            <End Role="GIFT" EntitySet="GIFTs" />
+            <End Role="MYGIFT" EntitySet="MYGIFTs" />
           </AssociationSet>
           <AssociationSet Name="FK_STAFF_ROLES" Association="Self.FK_STAFF_ROLES">
             <End Role="ROLES" EntitySet="ROLES" />
@@ -740,7 +856,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CATEGORIES">
-            <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORIES">
+            <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORy">
               <MappingFragment StoreEntitySet="CATEGORIES">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -763,6 +879,8 @@
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+                <ScalarProperty Name="POINT_MY" ColumnName="POINT_MY" />
+                <ScalarProperty Name="IDMYGIFT" ColumnName="IDMYGIFT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -798,6 +916,28 @@
                 <ScalarProperty Name="WARD" ColumnName="WARD" />
                 <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
                 <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIFTs">
+            <EntityTypeMapping TypeName="QLLaptopShopModel.GIFT">
+              <MappingFragment StoreEntitySet="GIFT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="G_POINT" ColumnName="G_POINT" />
+                <ScalarProperty Name="G_VALUE" ColumnName="G_VALUE" />
+                <ScalarProperty Name="G_START" ColumnName="G_START" />
+                <ScalarProperty Name="G_END" ColumnName="G_END" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MYGIFTs">
+            <EntityTypeMapping TypeName="QLLaptopShopModel.MYGIFT">
+              <MappingFragment StoreEntitySet="MYGIFT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDGIFT" ColumnName="IDGIFT" />
+                <ScalarProperty Name="G_VALUE" ColumnName="G_VALUE" />
+                <ScalarProperty Name="G_START" ColumnName="G_START" />
+                <ScalarProperty Name="G_END" ColumnName="G_END" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

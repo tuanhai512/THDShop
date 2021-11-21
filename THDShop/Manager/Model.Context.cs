@@ -26,17 +26,17 @@ namespace Manager
         }
     
         public virtual DbSet<BILL> BILLs { get; set; }
-        public virtual DbSet<CATEGORIES> CATEGORIES { get; set; }
+        public virtual DbSet<CATEGORy> CATEGORIES { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<DE_BILL> DE_BILL { get; set; }
         public virtual DbSet<DE_ORDER> DE_ORDER { get; set; }
         public virtual DbSet<DELI_ADDRESS> DELI_ADDRESS { get; set; }
+        public virtual DbSet<GIFT> GIFTs { get; set; }
+        public virtual DbSet<MYGIFT> MYGIFTs { get; set; }
         public virtual DbSet<ORDER> ORDERS { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTS { get; set; }
         public virtual DbSet<ROLE> ROLES { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
-
-        public System.Data.Entity.DbSet<Manager.ViewModel.Product.ProductDTO> ProductDTOes { get; set; }
     }
 }

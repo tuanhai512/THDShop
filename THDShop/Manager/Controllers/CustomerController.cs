@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Manager.ViewModel.Customer;
+using static Manager.ViewModel.Customer.CreateCustomerInput;
 
 namespace Manager.Controllers
 {
@@ -21,10 +22,13 @@ namespace Manager.Controllers
         //}
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
+            //if (Session["ROLE"] == null)
+            //{
+            //    return RedirectToAction("Index", "LoginQuanLy");
+            //}
+            //else (Session["ROLE"] == 1){
+            //    return RedirectToAction("Index","KhachHang")
+            //}
             var query = CustomerSingleton.Instance.listCustomer;
             return View(query.ToList());
         }
@@ -35,16 +39,28 @@ namespace Manager.Controllers
         [HttpPost]
         public ActionResult Create(CreateCustomerInput model)
         {
+            //var entity = new CUSTOMER();
+            //if (model == null)
+            //    entity = new CUSTOMER();
+            //entity.ID = model.ID;
+            //entity.PASSWORD = model.PASSWORD;
+            //_context.CUSTOMERs.Add(entity);
+            //_context.SaveChanges();
+            //CustomerSingleton.Instance.listCustomer.Clear();
+            //CustomerSingleton.Instance.Init(_context);
+            //var customer = CustomerSingleton.Instance.listCustomer;
+            //return RedirectToAction("Index");
             var entity = new CUSTOMER();
             if (model == null)
                 entity = new CUSTOMER();
-            entity.ID = model.IDUSER;
+            entity.ID = model.ID;
+            entity.IDUSER = model.IDUSER;
             entity.PASSWORD = model.PASSWORD;
             _context.CUSTOMERs.Add(entity);
             _context.SaveChanges();
             CustomerSingleton.Instance.listCustomer.Clear();
             CustomerSingleton.Instance.Init(_context);
-            var customer = CustomerSingleton.Instance.listCustomer;
+            // var category = CategorySingleton.Instance.listCategory;
             return RedirectToAction("Index");
         }
 
@@ -52,7 +68,7 @@ namespace Manager.Controllers
         {
             var entity = this._context.CUSTOMERs.Find(id);
             var model = new UpdateCustomerInput();
-            model.IDUSER = entity.IDUSER;
+            model.ID = entity.IDUSER;
             model.PASSWORD = entity.PASSWORD;
             return View(model);
         }
@@ -62,7 +78,7 @@ namespace Manager.Controllers
             var entity = new CUSTOMER();
             if (model == null)
                 return HttpNotFound();
-            entity.ID = model.IDUSER;
+            entity.ID = model.ID;
             entity.PASSWORD = model.PASSWORD;
             this._context.Entry(entity).State = EntityState.Modified;
             this._context.SaveChanges();

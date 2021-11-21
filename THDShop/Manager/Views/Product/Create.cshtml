@@ -3,10 +3,22 @@
 @{
     ViewBag.Title = "Create";
 }
+<head>
 
+</head>
 <h2>Create</h2>
+<script>function ChangeImage(UploadImage, previewImg) {
+        if (UploadImage.files && UploadImage.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(previewImg).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(UploadImage.files[0]);
+        }
+    }
+</script>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -48,26 +60,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IMAGE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">HINH ANH  </label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IMAGE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IMAGE, "", new { @class = "text-danger" })
+                <img src="@Url.Content(Model.IMAGE)" style="height:200px; width:200px; margin:10px;" id="previewImg" />
+                <input type="file" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.IDCATEGORY, htmlAttributes: new { @class = "control-label col-md-2" })
             @*<div class="col-md-10">
-                @Html.EditorFor(model => model.CATEGORYNAME, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CATEGORYNAME, "", new { @class = "text-danger" })
-            </div>*@
+                    @Html.EditorFor(model => model.CATEGORYNAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CATEGORYNAME, "", new { @class = "text-danger" })
+                </div>*@
             <div class="col-md-10">
                 @Html.DropDownList("IDCategory", (IEnumerable<SelectListItem>)ViewBag.Categories, "Chọn loại", new { @class = "form -control" })
                 @Html.ValidationMessageFor(model => model.IDCATEGORY, "", new { @class = "text-danger" })
             </div>
         </div>
 
-       
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

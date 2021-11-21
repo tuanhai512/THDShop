@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,5 +17,9 @@ namespace Manager.ViewModel.Product
         public string DESCRIPTION { get; set; }
         public string IMAGE { get; set; }
         public string CATEGORYNAME { get; set; }
+
+
+        [NotMapped]
+        public HttpPostedFile UploadImage { get; set; }
     }
 }

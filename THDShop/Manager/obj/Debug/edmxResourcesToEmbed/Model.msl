@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CATEGORIES">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORIES">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORy">
         <MappingFragment StoreEntitySet="CATEGORIES">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -38,6 +38,8 @@
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+          <ScalarProperty Name="POINT_MY" ColumnName="POINT_MY" />
+          <ScalarProperty Name="IDMYGIFT" ColumnName="IDMYGIFT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -73,6 +75,28 @@
           <ScalarProperty Name="WARD" ColumnName="WARD" />
           <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
           <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GIFTs">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.GIFT">
+        <MappingFragment StoreEntitySet="GIFT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="G_POINT" ColumnName="G_POINT" />
+          <ScalarProperty Name="G_VALUE" ColumnName="G_VALUE" />
+          <ScalarProperty Name="G_START" ColumnName="G_START" />
+          <ScalarProperty Name="G_END" ColumnName="G_END" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MYGIFTs">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.MYGIFT">
+        <MappingFragment StoreEntitySet="MYGIFT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDGIFT" ColumnName="IDGIFT" />
+          <ScalarProperty Name="G_VALUE" ColumnName="G_VALUE" />
+          <ScalarProperty Name="G_START" ColumnName="G_START" />
+          <ScalarProperty Name="G_END" ColumnName="G_END" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

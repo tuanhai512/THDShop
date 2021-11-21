@@ -80,3 +80,37 @@ H:\năm 4\THDShop\THDShop\User\obj\Debug\User.csproj.CoreCompileInputs.cache
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.csproj.CopyComplete
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.dll
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.pdb
+D:\Github\THDShop\THDShop\User\bin\User.dll.config
+D:\Github\THDShop\THDShop\User\bin\User.dll
+D:\Github\THDShop\THDShop\User\bin\User.pdb
+D:\Github\THDShop\THDShop\User\bin\Antlr3.Runtime.dll
+D:\Github\THDShop\THDShop\User\bin\EntityFramework.dll
+D:\Github\THDShop\THDShop\User\bin\EntityFramework.SqlServer.dll
+D:\Github\THDShop\THDShop\User\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Github\THDShop\THDShop\User\bin\Microsoft.Web.Infrastructure.dll
+D:\Github\THDShop\THDShop\User\bin\Newtonsoft.Json.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.Helpers.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.Mvc.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.Optimization.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.Razor.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.Deployment.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.dll
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.Razor.dll
+D:\Github\THDShop\THDShop\User\bin\WebGrease.dll
+D:\Github\THDShop\THDShop\User\bin\EntityFramework.xml
+D:\Github\THDShop\THDShop\User\bin\EntityFramework.SqlServer.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.Helpers.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.Mvc.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.Optimization.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.Razor.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.Deployment.xml
+D:\Github\THDShop\THDShop\User\bin\System.Web.WebPages.Razor.xml
+D:\Github\THDShop\THDShop\User\bin\Newtonsoft.Json.xml
+D:\Github\THDShop\THDShop\User\bin\Antlr3.Runtime.pdb
+D:\Github\THDShop\THDShop\User\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Github\THDShop\THDShop\User\obj\Debug\User.csproj.AssemblyReference.cache
+D:\Github\THDShop\THDShop\User\obj\Debug\User.csproj.CoreCompileInputs.cache
+D:\Github\THDShop\THDShop\User\obj\Debug\User.csproj.CopyComplete
+D:\Github\THDShop\THDShop\User\obj\Debug\User.dll
+D:\Github\THDShop\THDShop\User\obj\Debug\User.pdb

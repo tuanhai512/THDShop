@@ -156,7 +156,7 @@
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="CATEGORIES.cs">
+    <Compile Include="CATEGORy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CategoryController.cs" />
@@ -180,6 +180,9 @@
     <Compile Include="DE_ORDER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GIFT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +200,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MYGIFT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ORDER.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -228,7 +234,8 @@
     <Compile Include="ViewModel\Product\ProductDTO.cs" />
     <Compile Include="ViewModel\Roles.cs" />
     <Compile Include="ViewModel\Staff.cs" />
-    <Compile Include="ViewModel\User.cs" />
+    <Compile Include="ViewModel\User\CreateUserInput.cs" />
+    <Compile Include="ViewModel\User\UserDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -269,6 +276,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -283,23 +291,24 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
     <Content Include="Views\Staff\Details.cshtml" />
     <Content Include="Views\Staff\Create.cshtml" />
     <Content Include="Views\Staff\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Login\LoginAccount.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\LoaiPartial.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,10 +15,10 @@ namespace Manager.Controllers
         
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            //if (Session["IDQL"] == null)
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
             return View(_db.USERS.ToList());
         }
 

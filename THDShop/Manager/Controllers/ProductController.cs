@@ -154,10 +154,11 @@ namespace Manager.Controllers
         public ActionResult Delete(int ID)
         {
             var entity = this._context.PRODUCTS.Find(ID);
-            ProductSingleton.Instance.listProduct.Clear();
-            ProductSingleton.Instance.Init(_context);
+           
             this._context.PRODUCTS.Remove(entity);
             this._context.SaveChanges();
+            ProductSingleton.Instance.listProduct.Clear();
+            ProductSingleton.Instance.Init(_context);
             return RedirectToAction("Index");
         }
 

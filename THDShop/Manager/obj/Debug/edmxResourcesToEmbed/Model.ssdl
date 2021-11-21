@@ -36,6 +36,8 @@
     <Property Name="EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="PASSWORD" Type="varchar" MaxLength="30" />
     <Property Name="AVATAR" Type="nvarchar(max)" />
+    <Property Name="POINT_MY" Type="int" Nullable="false" />
+    <Property Name="IDMYGIFT" Type="int" />
   </EntityType>
   <EntityType Name="DE_BILL">
     <Key>
@@ -71,6 +73,26 @@
     <Property Name="WARD" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="DISTRICT" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="NOTE" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="GIFT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="G_POINT" Type="int" Nullable="false" />
+    <Property Name="G_VALUE" Type="float" Nullable="false" />
+    <Property Name="G_START" Type="datetime" />
+    <Property Name="G_END" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MYGIFT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDGIFT" Type="varchar" MaxLength="1" />
+    <Property Name="G_VALUE" Type="float" Nullable="false" />
+    <Property Name="G_START" Type="datetime" />
+    <Property Name="G_END" Type="datetime" />
   </EntityType>
   <EntityType Name="ORDERS">
     <Key>
@@ -172,6 +194,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CUSTOMER_MYGIFT">
+    <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="0..1" />
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MYGIFT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="IDMYGIFT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CUSTOMER_USER">
     <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
     <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
@@ -246,6 +280,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_GIFT_MYGIFT">
+    <End Role="GIFT" Type="Self.GIFT" Multiplicity="0..1" />
+    <End Role="MYGIFT" Type="Self.MYGIFT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GIFT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MYGIFT">
+        <PropertyRef Name="IDGIFT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ORDER_DEADDRESS">
     <End Role="DELI_ADDRESS" Type="Self.DELI_ADDRESS" Multiplicity="1" />
     <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
@@ -289,6 +335,8 @@
     <EntitySet Name="DE_BILL" EntityType="Self.DE_BILL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DE_ORDER" EntityType="Self.DE_ORDER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DELI_ADDRESS" EntityType="Self.DELI_ADDRESS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GIFT" EntityType="Self.GIFT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MYGIFT" EntityType="Self.MYGIFT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
@@ -305,6 +353,10 @@
     <AssociationSet Name="FK_CATE_PRODUCTS" Association="Self.FK_CATE_PRODUCTS">
       <End Role="CATEGORIES" EntitySet="CATEGORIES" />
       <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMER_MYGIFT" Association="Self.FK_CUSTOMER_MYGIFT">
+      <End Role="MYGIFT" EntitySet="MYGIFT" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
     </AssociationSet>
     <AssociationSet Name="FK_CUSTOMER_USER" Association="Self.FK_CUSTOMER_USER">
       <End Role="USERS" EntitySet="USERS" />
@@ -329,6 +381,10 @@
     <AssociationSet Name="FK_DEORDER_PRODUCTS" Association="Self.FK_DEORDER_PRODUCTS">
       <End Role="PRODUCTS" EntitySet="PRODUCTS" />
       <End Role="DE_ORDER" EntitySet="DE_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GIFT_MYGIFT" Association="Self.FK_GIFT_MYGIFT">
+      <End Role="GIFT" EntitySet="GIFT" />
+      <End Role="MYGIFT" EntitySet="MYGIFT" />
     </AssociationSet>
     <AssociationSet Name="FK_ORDER_DEADDRESS" Association="Self.FK_ORDER_DEADDRESS">
       <End Role="DELI_ADDRESS" EntitySet="DELI_ADDRESS" />

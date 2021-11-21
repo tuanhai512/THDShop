@@ -13,10 +13,10 @@ namespace Manager.Controllers
         QLLaptopShopEntities database = new QLLaptopShopEntities();
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
+            //if (Session["IDQL"] == null)
+            //{
+            //    return RedirectToAction("Index", "LoginQuanLy");
+            //}
             return View(database.ROLES.ToList());
         }
 
@@ -29,17 +29,20 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Create
         public ActionResult Create()
         {
-            return View();
+            ROLE hang = new ROLE();
+            return View(hang);
         }
 
-        // POST: QuanLy/KhachHang/Create
+        // POST: NhanVien/LoaiMon/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ROLE hang)
         {
             try
             {
                 // TODO: Add insert logic here
 
+                database.ROLES.Add(hang);
+                database.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -47,7 +50,6 @@ namespace Manager.Controllers
                 return View();
             }
         }
-
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
@@ -76,23 +78,33 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(database.ROLES.Where(s => s.ID == id).FirstOrDefault());
         }
 
-        // POST: QuanLy/KhachHang/Delete/5
+        // POST: NhanVien/DonViTinhMon/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, ROLE hang)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                hang = database.ROLES.Where(s => s.ID == id).FirstOrDefault();
+                database.ROLES.Remove(hang);
+                database.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return Content("This data using other table, Error Delete");
             }
-        } 
+        }
+
+        //public PartialViewResult LoaiPartial()
+        //{
+        //    var loaiHang = _db.ROLEs.ToList();
+        //    return PartialView(loaiHang);
+        //}
+        // GET: QuanLy/Loai
+
     }
 }
