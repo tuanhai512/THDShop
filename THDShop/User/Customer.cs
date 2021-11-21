@@ -30,7 +30,7 @@ namespace User
         public string PASSWORD { get; set; }
         public string AVATAR { get; set; }
     
-        public virtual USERS USERS { get; set; }
+        public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DELI_ADDRESS> DELI_ADDRESS { get; set; }
     }

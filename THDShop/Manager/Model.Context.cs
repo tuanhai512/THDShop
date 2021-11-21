@@ -26,7 +26,7 @@ namespace Manager
         }
     
         public virtual DbSet<BILL> BILLs { get; set; }
-        public virtual DbSet<CATEGORIES> CATEGORIES { get; set; }
+        public virtual DbSet<CATEGORy> CATEGORIES { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<DE_BILL> DE_BILL { get; set; }
         public virtual DbSet<DE_ORDER> DE_ORDER { get; set; }
@@ -36,7 +36,5 @@ namespace Manager
         public virtual DbSet<ROLE> ROLES { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
-
-        public System.Data.Entity.DbSet<Manager.ViewModel.Product.ProductDTO> ProductDTOes { get; set; }
     }
 }

@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6d6576d190ef4e2a8fcb349aadbaf18c" Name="Diagram1">
+      <Diagram DiagramId="30fe347620ab43a4bf5033a0bf31b65d" Name="Diagram1">
         <EntityTypeShape EntityType="QLLaptopShopModel.BILL" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLLaptopShopModel.CATEGORIES" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.CATEGORy" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.CUSTOMER" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.DE_BILL" Width="1.5" PointX="15" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.DE_ORDER" Width="1.5" PointX="12.75" PointY="6.5" IsExpanded="true" />

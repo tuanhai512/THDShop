@@ -15,7 +15,7 @@
     <NavigationProperty Name="STAFF" Relationship="Self.FK_BILL_STAFF" FromRole="BILL" ToRole="STAFF" />
     <NavigationProperty Name="DE_BILL" Relationship="Self.FK_DEBILL_BILL" FromRole="BILL" ToRole="DE_BILL" />
   </EntityType>
-  <EntityType Name="CATEGORIES">
+  <EntityType Name="CATEGORy">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -197,7 +197,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CATE_PRODUCTS">
-    <End Role="CATEGORIES" Type="QLLaptopShopModel.CATEGORIES" Multiplicity="0..1" />
+    <End Role="CATEGORIES" Type="Self.CATEGORy" Multiplicity="0..1" />
     <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CATEGORIES">
@@ -308,7 +308,7 @@
   </Association>
   <EntityContainer Name="QLLaptopShopEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BILLs" EntityType="Self.BILL" />
-    <EntitySet Name="CATEGORIES" EntityType="QLLaptopShopModel.CATEGORIES" />
+    <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORy" />
     <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
     <EntitySet Name="DE_BILL" EntityType="Self.DE_BILL" />
     <EntitySet Name="DE_ORDER" EntityType="Self.DE_ORDER" />

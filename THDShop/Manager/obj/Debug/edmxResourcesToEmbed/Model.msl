@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CATEGORIES">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORIES">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.CATEGORy">
         <MappingFragment StoreEntitySet="CATEGORIES">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />

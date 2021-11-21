@@ -34,7 +34,7 @@ namespace Manager
         public Nullable<System.DateTime> UPDATEAT { get; set; }
         public Nullable<int> IDCATEGORY { get; set; }
     
-        public virtual CATEGORIES CATEGORy { get; set; }
+        public virtual CATEGORy CATEGORy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DE_ORDER> DE_ORDER { get; set; }
     }
