@@ -538,6 +538,7 @@
     <Content Include="Views\HomeUser\Contact.cshtml" />
     <Content Include="Views\Cart\ShowToCart.cshtml" />
     <Content Include="Views\HomeUser\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
