@@ -77,9 +77,25 @@ H:\năm 4\THDShop\THDShop\Manager\bin\Newtonsoft.Json.xml
 H:\năm 4\THDShop\THDShop\Manager\bin\Antlr3.Runtime.pdb
 H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
-H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.CopyComplete
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.dll
 H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.pdb
+H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.AspNetCore.Http.Features.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.Extensions.Primitives.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Buffers.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.IO.Pipelines.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Memory.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Numerics.Vectors.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Runtime.CompilerServices.Unsafe.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Threading.Tasks.Extensions.dll
+H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.AspNetCore.Http.Features.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\Microsoft.Extensions.Primitives.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Buffers.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.IO.Pipelines.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Memory.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Numerics.Vectors.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Runtime.CompilerServices.Unsafe.xml
+H:\năm 4\THDShop\THDShop\Manager\bin\System.Threading.Tasks.Extensions.xml
+H:\năm 4\THDShop\THDShop\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
 D:\Github\THDShop\THDShop\Manager\bin\Manager.dll.config
 D:\Github\THDShop\THDShop\Manager\bin\Manager.dll
 D:\Github\THDShop\THDShop\Manager\bin\Manager.pdb

@@ -283,6 +283,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
@@ -294,12 +306,6 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Login\LoginAccount.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\LoaiPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
