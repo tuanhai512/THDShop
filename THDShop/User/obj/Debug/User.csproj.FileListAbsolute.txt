@@ -80,3 +80,7 @@ H:\năm 4\THDShop\THDShop\User\obj\Debug\User.csproj.CoreCompileInputs.cache
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.csproj.CopyComplete
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.dll
 H:\năm 4\THDShop\THDShop\User\obj\Debug\User.pdb
+H:\năm 4\THDShop\THDShop\User\obj\Debug\User.csproj.AssemblyReference.cache
+H:\năm 4\THDShop\THDShop\User\bin\Manager.dll
+H:\năm 4\THDShop\THDShop\User\bin\Manager.pdb
+H:\năm 4\THDShop\THDShop\User\bin\Manager.dll.config

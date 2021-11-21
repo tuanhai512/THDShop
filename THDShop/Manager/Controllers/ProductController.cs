@@ -55,10 +55,10 @@ namespace Manager.Controllers
         [HttpPost]
         public ActionResult Create(CreateProductInput model)
         {
-            var entity = new PRODUCT();
+            var entity = new PRODUCTS();
             if (model != null)
             {
-                entity = new PRODUCT();
+                entity = new PRODUCTS();
                 var categorylist = _context.CATEGORIES.ToList().Select(
                 x => new SelectListItem
                 {
@@ -121,7 +121,7 @@ namespace Manager.Controllers
         [HttpPost]
         public ActionResult Edit(UpdateProductInput model)
         {
-            var entity = new PRODUCT();
+            var entity = new PRODUCTS();
             if (model == null)
                 return HttpNotFound();
 

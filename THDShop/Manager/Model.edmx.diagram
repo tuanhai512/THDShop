@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6d6576d190ef4e2a8fcb349aadbaf18c" Name="Diagram1">
+      <Diagram DiagramId="15ca9b72b522420eb5c3347a8a099856" Name="Diagram1">
         <EntityTypeShape EntityType="QLLaptopShopModel.BILL" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.CATEGORIES" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.CUSTOMER" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.DE_BILL" Width="1.5" PointX="15" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.DE_ORDER" Width="1.5" PointX="12.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.DELI_ADDRESS" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLLaptopShopModel.ORDER" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLLaptopShopModel.PRODUCT" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLLaptopShopModel.ROLE" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.ORDERS" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.PRODUCTS" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.ROLES" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLLaptopShopModel.STAFF" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLLaptopShopModel.USER" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLLaptopShopModel.USERS" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
         <AssociationConnector Association="QLLaptopShopModel.FK_BILL_ORDER" ManuallyRouted="false" />
         <AssociationConnector Association="QLLaptopShopModel.FK_BILL_STAFF" ManuallyRouted="false" />
         <AssociationConnector Association="QLLaptopShopModel.FK_DEBILL_BILL" ManuallyRouted="false" />

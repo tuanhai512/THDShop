@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLLaptopShopModelStoreContainer" CdmEntityContainer="QLLaptopShopEntities">
-    <EntitySetMapping Name="BILLs">
+    <EntitySetMapping Name="BILL">
       <EntityTypeMapping TypeName="QLLaptopShopModel.BILL">
         <MappingFragment StoreEntitySet="BILL">
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -26,7 +26,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CUSTOMERs">
+    <EntitySetMapping Name="CUSTOMER">
       <EntityTypeMapping TypeName="QLLaptopShopModel.CUSTOMER">
         <MappingFragment StoreEntitySet="CUSTOMER">
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -77,7 +77,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ORDERS">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.ORDER">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.ORDERS">
         <MappingFragment StoreEntitySet="ORDERS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DAY" ColumnName="DAY" />
@@ -90,7 +90,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PRODUCTS">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.PRODUCT">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.PRODUCTS">
         <MappingFragment StoreEntitySet="PRODUCTS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -109,14 +109,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ROLES">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.ROLE">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.ROLES">
         <MappingFragment StoreEntitySet="ROLES">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="STAFFs">
+    <EntitySetMapping Name="STAFF">
       <EntityTypeMapping TypeName="QLLaptopShopModel.STAFF">
         <MappingFragment StoreEntitySet="STAFF">
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -132,8 +132,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="USERS">
-      <EntityTypeMapping TypeName="QLLaptopShopModel.USER">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.USERS">
         <MappingFragment StoreEntitySet="USERS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />

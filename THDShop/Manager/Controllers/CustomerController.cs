@@ -12,7 +12,13 @@ namespace Manager.Controllers
     {
         // GET: Customer
         private QLLaptopShopEntities _context=new QLLaptopShopEntities();
-        // GET: NhanVien/LoaiMon
+
+        public CustomerController()
+        {
+           CustomerSingleton.Instance.Init(_context);
+
+        }
+
         //public CustomerController(QLLaptopShopEntities context)
         //{
         //    this._context = context;
@@ -21,10 +27,10 @@ namespace Manager.Controllers
         //}
         public ActionResult Index()
         {
-            if (Session["IDQL"] == null)
-            {
-                return RedirectToAction("Index", "LoginQuanLy");
-            }
+            //if (Session["IDQL"] == null)
+            //{
+            //    return RedirectToAction("Index", "LoginQuanLy");
+            //}
             var query = CustomerSingleton.Instance.listCustomer;
             return View(query.ToList());
         }
@@ -40,7 +46,7 @@ namespace Manager.Controllers
                 entity = new CUSTOMER();
             entity.ID = model.IDUSER;
             entity.PASSWORD = model.PASSWORD;
-            _context.CUSTOMERs.Add(entity);
+            _context.CUSTOMER.Add(entity);
             _context.SaveChanges();
             CustomerSingleton.Instance.listCustomer.Clear();
             CustomerSingleton.Instance.Init(_context);
@@ -50,7 +56,7 @@ namespace Manager.Controllers
 
         public ActionResult Edit(int id)
         {
-            var entity = this._context.CUSTOMERs.Find(id);
+            var entity = this._context.CUSTOMER.Find(id);
             var model = new UpdateCustomerInput();
             model.IDUSER = entity.IDUSER;
             model.PASSWORD = entity.PASSWORD;
@@ -71,8 +77,8 @@ namespace Manager.Controllers
 
         public ActionResult Delete(int id)
         {
-            var entity = this._context.CUSTOMERs.Find(id);
-            this._context.CUSTOMERs.Remove(entity);
+            var entity = this._context.CUSTOMER.Find(id);
+            this._context.CUSTOMER.Remove(entity);
             this._context.SaveChanges();
             CustomerSingleton.Instance.listCustomer.Clear();
             CustomerSingleton.Instance.Init(_context);
@@ -80,7 +86,7 @@ namespace Manager.Controllers
         }
         public ActionResult Detail(int id)
         {
-            var query = from c in _context.CUSTOMERs
+            var query = from c in _context.CUSTOMER
                         where c.IDUSER == id
                         select new DetailCustomerDTO
                         {

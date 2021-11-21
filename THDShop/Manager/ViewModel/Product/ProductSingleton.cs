@@ -22,7 +22,7 @@ namespace Manager.ViewModel.Product
                                 NAME = c.NAME,
                                 PRICE = c.PRICE,
                                 DESCRIPTION = c.DESCRIPTION,
-                                CATEGORYNAME = c.CATEGORy.NAME,
+                                CATEGORYNAME = c.CATEGORIES.NAME,
                                 IDCATEGORY = c.IDCATEGORY,
                                 QUANTITY = c.QUANTITY,
                                 IMAGE = c.IMAGE

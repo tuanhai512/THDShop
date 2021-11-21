@@ -63,7 +63,7 @@ namespace Manager.Controllers
             model.Name = entity.NAME;
             return View(model);
         }
-        [HttpPut]
+        [HttpPost]
         public ActionResult Edit(UpdateCategoryInput model)
         {
             var entity = new CATEGORIES();
@@ -73,6 +73,8 @@ namespace Manager.Controllers
             entity.NAME = model.Name;
             this._context.Entry(entity).State = EntityState.Modified;
             this._context.SaveChanges();
+             CategorySingleton.Instance.listCategory.Clear();
+            CategorySingleton.Instance.Init(_context);
             return RedirectToAction("Index");
         }
 
