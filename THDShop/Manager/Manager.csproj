@@ -156,7 +156,7 @@
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="CATEGORIES.cs">
+    <Compile Include="CATEGORy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CategoryController.cs" />
