@@ -31,13 +31,13 @@ namespace Manager.Controllers
         
         public ActionResult Create()
         {
-            USER user = new USER();
+            USERS user = new USERS();
             return View(user);
         }
 
         
         [HttpPost]
-        public ActionResult Create(USER user)
+        public ActionResult Create(USERS user)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(USER user, int id)
+        public ActionResult Edit(USERS user, int id)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace Manager.Controllers
 
         // POST: NhanVien/DonViTinhMon/Delete/5
         [HttpPost]
-        public ActionResult Delete(USER user, int id)
+        public ActionResult Delete(USERS user, int id)
         {
             try
             {

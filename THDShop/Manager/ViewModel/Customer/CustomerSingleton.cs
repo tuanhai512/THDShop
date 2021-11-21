@@ -15,7 +15,7 @@ namespace Manager.ViewModel.Customer
         {
             if (listCustomer.Count == 0)
             {
-                var query = from c in _context.CUSTOMERs
+                var query = from c in _context.CUSTOMER
                             select new CustomerDTO
                             {
                                 ID = c.ID,

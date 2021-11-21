@@ -1,30 +1,36 @@
-﻿using System;
-using Manager.ViewModel.Product;
+﻿using Manager.ViewModel.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using User;
 using System.Web.Mvc;
-using User.ViewModel;
 
 namespace User.Controllers
 {
     public class HomeUserController : Controller
     {
         QLLaptopShopEntities _db = new QLLaptopShopEntities();
-        public HomeUserController()
-        {
 
-        }
+
         public ActionResult Index()
         {
-            var prodList = _db.PRODUCTS.OrderByDescending(x => x.NAME);
-            return View(prodList);
+            PRODUCTS product = new PRODUCTS();
+            var query = from c in _db.PRODUCTS
+                        select new ProductDTO
+                        {
+                            ID = c.ID,
+                            NAME = c.NAME,
+                            PRICE = c.PRICE,
+                            QUANTITY = c.QUANTITY                         
+                        };
+            return View(query.ToList());
         }
 
-        public ActionResult Details(int id)
+        public ActionResult About()
         {
-            return View(_db.PRODUCTS.Where(s => s.ID == id).FirstOrDefault());
+            ViewBag.Message = "Your application description page.";
+
+            return View();
         }
 
         public ActionResult Contact()

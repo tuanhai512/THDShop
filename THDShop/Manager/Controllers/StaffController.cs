@@ -17,13 +17,13 @@ namespace Manager.Controllers
             {
                 return RedirectToAction("Index", "LoginQuanLy");
             }
-            return View(database.STAFFs.ToList());
+            return View(database.STAFF.ToList());
         }
 
         // GET: QuanLy/KhachHang/Details/5
         public ActionResult Details(int id)
         {
-            return View(database.STAFFs.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.STAFF.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // GET: QuanLy/KhachHang/Create
@@ -51,14 +51,14 @@ namespace Manager.Controllers
         // GET: QuanLy/KhachHang/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(database.STAFFs.Where(s => s.ID == id).FirstOrDefault());
+            return View(database.STAFF.Where(s => s.ID == id).FirstOrDefault());
         }
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
         public ActionResult Edit(STAFF nhanvien)
         {
-            var detail = database.STAFFs.Where(s => s.ID == nhanvien.ID);
+            var detail = database.STAFF.Where(s => s.ID == nhanvien.ID);
 
             if (detail == null)
             {
