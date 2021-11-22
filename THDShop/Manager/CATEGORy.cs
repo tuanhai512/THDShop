@@ -12,12 +12,12 @@ namespace Manager
     using System;
     using System.Collections.Generic;
     
-    public partial class CATEGORIES
+    public partial class CATEGORy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CATEGORIES()
+        public CATEGORy()
         {
-            this.PRODUCTS = new HashSet<PRODUCTS>();
+            this.PRODUCTS = new HashSet<PRODUCT>();
         }
     
         public int ID { get; set; }
@@ -28,6 +28,6 @@ namespace Manager
         public Nullable<System.DateTime> UPDATEAT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRODUCTS> PRODUCTS { get; set; }
+        public virtual ICollection<PRODUCT> PRODUCTS { get; set; }
     }
 }

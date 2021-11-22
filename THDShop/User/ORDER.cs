@@ -24,7 +24,7 @@ namespace User
         public int ID { get; set; }
         public System.DateTime DAY { get; set; }
         public int IDDELIADDRESS { get; set; }
-        public Nullable<double> TOTALMONEY { get; set; }
+        public double TOTALMONEY { get; set; }
         public string NOTE { get; set; }
         public int STATUS { get; set; }
         public int METHODS { get; set; }

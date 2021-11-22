@@ -14,16 +14,8 @@ namespace User.Controllers
 
         public ActionResult Index()
         {
-            PRODUCTS product = new PRODUCTS();
-            var query = from c in _db.PRODUCTS
-                        select new ProductDTO
-                        {
-                            ID = c.ID,
-                            NAME = c.NAME,
-                            PRICE = c.PRICE,
-                            QUANTITY = c.QUANTITY                         
-                        };
-            return View(query.ToList());
+            var prodList = _db.PRODUCTS.OrderByDescending(x => x.NAME);
+            return View(prodList);
         }
 
         public ActionResult About()

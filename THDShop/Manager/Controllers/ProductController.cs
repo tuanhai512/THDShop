@@ -30,13 +30,22 @@ namespace Manager.Controllers
         //}
         public ActionResult Index()
         {
-            //if (Session["IDQUANLY"] == null)
-            //{
-            //    return RedirectToAction("LoginAccount","Login");
-            //}
-
-            var query = ProductSingleton.Instance.listProduct;
-            return View(query.ToList());          
+            var query = from c in _context.PRODUCTS
+                        select new ProductDTO
+                        {
+                            ID = c.ID,
+                            NAME = c.NAME,
+                            PRICE = c.PRICE,
+                            ORI_PRICE = c.ORI_PRICE,
+                            DESCRIPTION = c.DESCRIPTION,
+                            CATEGORYNAME = c.CATEGORy.NAME,
+                            IDCATEGORY = c.IDCATEGORY,
+                            QUANTITY = c.QUANTITY,
+                            IMAGE = c.IMAGE
+                        };
+            return View(query.ToList());
+            //var query = ProductSingleton.Instance.listProduct;
+            //return View(query.ToList());
         }
 
         public ActionResult Create()
@@ -49,16 +58,17 @@ namespace Manager.Controllers
             }
            );
             ViewBag.Categories = categorylist;
-            return View();
+            CreateProductInput prod = new CreateProductInput();
+            return View(prod);
 
         }
         [HttpPost]
         public ActionResult Create(CreateProductInput model)
         {
-            var entity = new PRODUCTS();
+            var entity = new PRODUCT();
             if (model != null)
             {
-                entity = new PRODUCTS();
+                entity = new PRODUCT();
                 var categorylist = _context.CATEGORIES.ToList().Select(
                 x => new SelectListItem
                 {
@@ -72,16 +82,16 @@ namespace Manager.Controllers
                     string filename = Path.GetFileNameWithoutExtension(model.UploadImage.FileName);
                     string extent = Path.GetExtension(model.UploadImage.FileName);
                     filename = filename + extent;
-                    model.IMAGE = "/IMAGEs/" + filename;
-                    model.UploadImage.SaveAs(Path.Combine("../Manager/Assets/img/" + filename));
-                    model.UploadImage.SaveAs(Path.Combine("../User/Assets/img/" + filename));
+                    model.IMAGE = "~/Assets/Images/" + filename;
+                    model.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Assets/Images") , filename));
                 }
-                entity.IMAGE = model.IMAGE;
+                entity.IMAGE = model.IMAGE; 
                 if (ModelState.IsValid)
                 {
                     entity.ID = model.ID;
                     entity.NAME = model.NAME;
                     entity.PRICE = model.PRICE.HasValue ? model.PRICE.Value : 0;
+                    entity.ORI_PRICE = model.ORI_PRICE.HasValue ? model.ORI_PRICE.Value : 0;
                     entity.QUANTITY = model.QUANTITY.HasValue ? model.QUANTITY.Value : 0;
                     entity.DESCRIPTION = model.DESCRIPTION;
                     entity.IDCATEGORY = model.IDCATEGORY;
@@ -111,9 +121,9 @@ namespace Manager.Controllers
             model.ID = entity.ID;
             model.NAME = entity.NAME;
             model.PRICE = entity.PRICE;
+            model.ORI_PRICE = entity.ORI_PRICE;
             model.QUANTITY = entity.QUANTITY;
             model.DESCRIPTION = entity.DESCRIPTION;
-
             model.IDCATEGORY = entity.IDCATEGORY;
             model.IMAGE = entity.IMAGE;
             return View(model);
@@ -121,7 +131,7 @@ namespace Manager.Controllers
         [HttpPost]
         public ActionResult Edit(UpdateProductInput model)
         {
-            var entity = new PRODUCTS();
+            var entity = new PRODUCT();
             if (model == null)
                 return HttpNotFound();
 
@@ -133,14 +143,13 @@ namespace Manager.Controllers
                 string filename = Path.GetFileNameWithoutExtension(model.UploadImage.FileName);
                 string extent = Path.GetExtension(model.UploadImage.FileName);
                 filename = filename + extent;
-                model.IMAGE = "/IMAGEs/" + filename;
-
-                model.UploadImage.SaveAs(Path.Combine("../Manager/Assets/img/" + filename));
-                model.UploadImage.SaveAs(Path.Combine("../User/Assets/img/" + filename));
+                model.IMAGE = "/Images/" + filename;
+                model.UploadImage.SaveAs(Path.Combine("~/Assets/Images/" + filename));
             }
             entity.ID = model.ID;
             entity.NAME = model.NAME;
             entity.PRICE = model.PRICE.HasValue ? model.PRICE.Value : 0;
+            entity.ORI_PRICE = model.ORI_PRICE.HasValue ? model.ORI_PRICE.Value : 0;
             entity.QUANTITY = model.QUANTITY.HasValue ? model.QUANTITY.Value : 0;
             entity.DESCRIPTION = model.DESCRIPTION;
             entity.IDCATEGORY = model.IDCATEGORY;
