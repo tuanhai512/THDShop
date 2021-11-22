@@ -148,6 +148,9 @@
     <Compile Include="DE_ORDER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="GIFT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +169,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MYGIFT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ORDER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -183,7 +189,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Cart.cs" />
-    <Compile Include="ViewModel\HomeUserSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\GioHang.css" />
@@ -542,6 +547,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Images\" />
     <Folder Include="ViewModel\HomeUser\" />
   </ItemGroup>
   <ItemGroup>

@@ -56,7 +56,7 @@ namespace Manager.Controllers
 
         // POST: QuanLy/Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(ROLES role)
+        public ActionResult Edit(ROLE role)
         {
             var detail = database.ROLES.Where(s => s.ID == role.ID);
 

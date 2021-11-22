@@ -48,10 +48,7 @@ namespace User.ViewModel
             var item = items.Find(s => s._product.ID == id);
             if (item != null)
             {
-                if (items.Find(s => s._product.QUANTITY > _quan) != null)
                     item._quantity = _quan;
-                else
-                    item._quantity = 1;
             }
         }
         public void Remove_CartItem(int id)

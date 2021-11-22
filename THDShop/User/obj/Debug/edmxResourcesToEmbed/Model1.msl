@@ -38,6 +38,8 @@
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+          <ScalarProperty Name="POINT_MY" ColumnName="POINT_MY" />
+          <ScalarProperty Name="IDMYGIFT" ColumnName="IDMYGIFT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -76,6 +78,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="GIFTs">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.GIFT">
+        <MappingFragment StoreEntitySet="GIFT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="G_POINT" ColumnName="G_POINT" />
+          <ScalarProperty Name="G_VALUE" ColumnName="G_VALUE" />
+          <ScalarProperty Name="G_START" ColumnName="G_START" />
+          <ScalarProperty Name="G_END" ColumnName="G_END" />
+          <ScalarProperty Name="DESCREPTION" ColumnName="DESCREPTION" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MYGIFTs">
+      <EntityTypeMapping TypeName="QLLaptopShopModel.MYGIFT">
+        <MappingFragment StoreEntitySet="MYGIFT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDGIFT" ColumnName="IDGIFT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ORDERS">
       <EntityTypeMapping TypeName="QLLaptopShopModel.ORDER">
         <MappingFragment StoreEntitySet="ORDERS">
@@ -94,10 +117,16 @@
         <MappingFragment StoreEntitySet="PRODUCTS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
-          <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
           <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
           <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="ORI_PRICE" ColumnName="ORI_PRICE" />
           <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DESCRIPTION_CPU" ColumnName="DESCRIPTION_CPU" />
+          <ScalarProperty Name="DESCRIPTION_RAM" ColumnName="DESCRIPTION_RAM" />
+          <ScalarProperty Name="DESCRIPTION_STORAGE" ColumnName="DESCRIPTION_STORAGE" />
+          <ScalarProperty Name="DESCRIPTION_CARD" ColumnName="DESCRIPTION_CARD" />
+          <ScalarProperty Name="DESCRIPTION_SCREEN" ColumnName="DESCRIPTION_SCREEN" />
+          <ScalarProperty Name="DESCRIPTION_WEIGHT" ColumnName="DESCRIPTION_WEIGHT" />
           <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
           <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
           <ScalarProperty Name="CREATEBY" ColumnName="CREATEBY" />
